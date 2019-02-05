@@ -29,6 +29,15 @@ func privateHandler(w http.ResponseWriter, r *http.Request) {
 	//Do your token verification here or in middleware, then return the token for use in the functions,
 	//or change the signature for the functions
 	token := &exampleToken{FirstName: "James", Email: "test@gmail.com"}
+	
+	if r.Method == "GET" {
+		//GET requests responds with map defined aboce publicFMInfo, you write that map to explain how your functions work, and whats available.
+		easygo.Respond(w, r, 200, snsFMInfo, map[string]string{"Content-Type": "application/json"})
+		return
+	} else if r.Method != "POST" {
+		easygo.Respond(w, r, 405, "only GET and POST are supported on this rpc endpoint", nil)
+		return
+	}
 
 	//Decode request into array
 	requestArr := []*rpcRequest{}
