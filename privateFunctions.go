@@ -34,6 +34,10 @@ func privateHandler(w http.ResponseWriter, r *http.Request) {
 	requestArr := []*rpcRequest{}
 	rawBody := r.Body
 	bytBody, err := ioutil.ReadAll(rawBody)
+	if err != nil {
+		easygo.Respond(w, r, 400, easygo.ResponseObject{Error: true, Message: "bad body"}, nil)
+		return
+	}
 	if len(bytBody) == 0 {
 		easygo.Respond(w, r, 400, easygo.ResponseObject{Error: true, Message: "empty body"}, nil)
 		return
