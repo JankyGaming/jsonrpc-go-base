@@ -2,7 +2,7 @@ package main
 
 //RPC Structs
 
-var (
+const (
 	//User Errors -32000 - -32010
 	rpcErrUserNotFound           = -32000
 	rpcErrEmailAlreadyRegistered = -32001
