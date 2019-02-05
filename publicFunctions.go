@@ -28,7 +28,7 @@ var publicFMInfo = map[string]interface{}{
 func publicHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		//GET requests responds with map defined aboce publicFMInfo, you write that map to explain how your functions work, and whats available.
-		easygo.Respond(w, r, 200, publicFMInfo, nil)
+		easygo.Respond(w, r, 200, snsFMInfo, map[string]string{"Content-Type": "application/json"})
 		return
 	} else if r.Method != "POST" {
 		easygo.Respond(w, r, 405, "only GET and POST are supported on this rpc endpoint", nil)
